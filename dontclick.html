@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<meta author='Karyn Nakamura'>
+	<title>DON'T</title>
+	<meta name="viewport" content="initial-scale=1" /> 
+	<script src="https://d3js.org/d3.v5.min.js"></script>
+	<script src='https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js'></script>
+    <link rel="image_src" href="./img/pink.png"/>
+	<meta property="og:image" content = "./img/pink.png" />
+	<link rel="icon" href="./img/pink.png">
+	<style type="text/css">
+		
+body {
+	margin: 0;
+	padding: 0;
+	}
+
+#text{
+    position: absolute;
+    top: 100px;
+    left: 100px;
+}
+
+#congrat{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  animation-name: rotate;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    display: none;
+}
+@keyframes rotate{
+    from{ transform: rotate(-360deg); }
+    to{ transform: rotate(360deg); }
+}
+
+ 	</style>
+</head>
+
+<body>
+
+    <div id = "text">DON'T CLICK</div>
+    <div id = "congrat" description = "hahahahaha u did it good luck forever">CONGRATION</div>
+
+<script type="text/javascript">
+
+
+var winWidth = window.innerWidth *0.94;
+var winHeight = window.innerHeight*0.95;
+
+var text = document.getElementById('text');
+
+var randomTop
+var randomLeft
+
+function sortRandom() {  
+      // get random numbers for each element
+      randomTop = getRandomNumber(0, winHeight);
+      randomLeft = getRandomNumber(0, winWidth);
+      
+      // update top and left position
+    text.style.top = randomTop +"px";
+    text.style.left = randomLeft +"px";
+}
+
+
+d3.select("#text")
+.on('mouseover', function() { 
+    sortRandom()
+})
+.on('click', function() { 
+    d3.select("#congrat").style("display", "block")
+    d3.select("#text").style("display", "none")
+})
+
+function getRandomNumber(min, max) {
+  return Math.random() * (max - min) + min;
+}
+
+
+
+</script>
+</body>
+</html>
